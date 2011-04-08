@@ -1,0 +1,21 @@
+sqlite:
+  adapter: sqlite
+  database: vendor/plugins/ext_json/test/test.sqlite.db
+ 
+sqlite3:
+  adapter: sqlite3
+  database: vendor/plugins/ext_json/test/test.sqlite3.db
+ 
+postgresql:
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  database: ext_json_plugin_test
+  min_messages: ERROR
+ 
+mysql:
+  adapter: mysql
+  host: localhost
+  username: root
+  password: password
+  database: ext_json_plugin_test

@@ -1,0 +1,1 @@
+require "ext_json/core_ext.rb"

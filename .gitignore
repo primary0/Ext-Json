@@ -1,0 +1,4 @@
+.DS_Store
+*.tmproj
+test/*.log
+test/*.db
