@@ -11,7 +11,7 @@ Array.class_eval do
       if self.first.class.name.constantize.respond_to("all")
         new_hash[:total] = self.first.class.name.constantize.all.count
       else
-        new[:total] = self.length
+        new_hash[:total] = self.length
       end
     end
     
