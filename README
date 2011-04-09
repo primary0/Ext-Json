@@ -11,7 +11,7 @@ rails plugin install git://github.com/primary0/Ext-Json.git
 In your environment.rb set "include_root_in_json" to "false":
 ActiveRecord::Base.include_root_in_json = false
 
-Set the "root" attribute if your Ext Datasource to "data".
+Set the "root" attribute of your Ext Datasource to "data".
 
 Sample Controller
 --------------------------
