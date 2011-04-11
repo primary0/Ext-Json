@@ -1,5 +1,6 @@
 Array.class_eval do
 
+  # Extends the Array class to provide an Ext JS friendly JSON output from a hash of ActiveRecord objects.
   def ext_json 
        
     new_hash = {}

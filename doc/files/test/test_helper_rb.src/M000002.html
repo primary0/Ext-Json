@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>load_schema (test/test_helper.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/test_helper.rb, line 7</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_schema</span>
+  
+  <span class="ruby-identifier">config</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'/database.yml'</span>))
+  <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/debug.log&quot;</span>)
+ 
+  <span class="ruby-identifier">db_adapter</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'DB'</span>]
+ 
+  <span class="ruby-comment cmt"># no db passed, try one of these fine config-free DBs before bombing.</span>
+  <span class="ruby-identifier">db_adapter</span> <span class="ruby-operator">||=</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'rubygems'</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'sqlite'</span>
+      <span class="ruby-value str">'sqlite'</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">MissingSourceFile</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'sqlite3'</span>
+        <span class="ruby-value str">'sqlite3'</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">MissingSourceFile</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+ 
+  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">db_adapter</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;No DB Adapter selected. Pass the DB= option to pick one, or install Sqlite or Sqlite3.&quot;</span>
+  <span class="ruby-keyword kw">end</span>
+ 
+  <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(<span class="ruby-identifier">config</span>[<span class="ruby-identifier">db_adapter</span>])
+  <span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/schema.rb&quot;</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'/../init'</span>
+  
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
