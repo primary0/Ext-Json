@@ -21,7 +21,7 @@ h2. Usage
 
 Sample index method:
 @@posts = Post.all@
-@respond_with post.ext_json@
+@respond_with @posts.ext_json@
 
 Sample output for the above method:
 @{"data" : [{"title" : "First Post"}, {"title" : "Second Post"}], "total":2}@
