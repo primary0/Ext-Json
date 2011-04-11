@@ -8,7 +8,7 @@ Array.class_eval do
         
     if self.length > 0      
       new_hash[:data] = self
-      if self.first.class.name.constantize.respond_to("all")
+      if self.first.class.name.constantize.respond_to?("all")
         new_hash[:total] = self.first.class.name.constantize.all.count
       else
         new_hash[:total] = self.length
