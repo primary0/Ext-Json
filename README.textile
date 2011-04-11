@@ -1,42 +1,30 @@
-ExtJson
-=========
+h1(#header). ExtJson
 
 Output ExtJS 3.X friendly JSON using respond_with.
 
-Setup
------------
+h2. Setup
+
 Install the plugin:
-`
-rails plugin install git://github.com/primary0/Ext-Json.git
+@rails plugin install git://github.com/primary0/Ext-Json.git@
 
 
 In your environment.rb set "include_root_in_json" to "false":
-`
-ActiveRecord::Base.include_root_in_json = false
+@ActiveRecord::Base.include_root_in_json = false@
 
 
 Set the "root" attribute of your Ext Datasource to "data".
 
-Sample Controller
---------------------------
-`
-class PostsController < ApplicationController
+Add the following to your controllers.
+@respond_to :json@
 
-respond_to :json
+h2. Usage
 
-def index
-	@posts = Post.all
-	respond_with @posts.ext_json	
-end
+Sample index method:
+@@posts = Post.all@
+@respond_with post.ext_json@
 
-		
-
-Sample Output
-------------
-`
-{"data" : [{"title" : "First Post"}, {"title" : "Second Post"}], "total":2}
-`
+Sample output for the above method:
+@{"data" : [{"title" : "First Post"}, {"title" : "Second Post"}], "total":2}@
 
 
 Copyright (c) 2011 Mohamed Ashraf, released under the MIT license
-
