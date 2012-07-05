@@ -27,4 +27,4 @@ Sample output for the above method:
 @{"data" : [{"title" : "First Post"}, {"title" : "Second Post"}], "total":2}@
 
 
-Copyright (c) 2011 Mohamed Ashraf, released under the MIT license
+2011 Mohamed Ashraf - MIT license
